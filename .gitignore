@@ -1,0 +1,29 @@
+# --- Python cache and compiled files ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# --- Virtual environments ---
+venv/
+env/
+.venv/
+ENV/
+
+# --- IDE and editor settings ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+
+# --- OS and user files ---
+.DS_Store
+Thumbs.db
+
+# --- Logs and reports ---
+logs/
+reports/
+*.log
+*.htm*
