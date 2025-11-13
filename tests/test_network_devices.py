@@ -2,6 +2,12 @@ import socket
 import pytest
 import os
 
+from app.utils.network_utils import get_network_status
+import yaml
+
+with open("config/config.yaml") as f:
+    config = yaml.safe_load(f)
+
 LOG_DIR = "logs"
 os.makedirs(LOG_DIR, exist_ok=True)
 

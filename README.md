@@ -4,16 +4,34 @@ Automates validation of ML pipelines and network device testing using PyTest in 
 Runs model accuracy, data integrity, inference latency tests, and network connectivity/latency validation.
 
 Folder Structure
-ai_test_framework/
+ai_test_framework_model/
 ├── app/                      # Project source code
-├── network-sim/              # Network simulation scripts
+│   ├── __init__.py
+│   ├── pipeline.py
+│   ├── model_utils.py
+│   └── utils/
+│       ├── __init__.py
+│       ├── data_loader.py
+│       ├── logger.py
+│       ├── metrics.py
+│       └── network_utils.py
+├── config/
+│   └── config.yaml
+├── network-sim/              # Network simulation
+│   ├── __init__.py
+│   └── server.py
+├── tests/                    # PyTest test cases
+│   ├── __init__.py
+│   ├── test_model_training.py
+│   ├── test_inference_validation.py
+│   └── test_network_devices.py
 ├── reports/                  # Test HTML reports
 ├── logs/                     # Logs for network tests
-├── tests/                    # PyTest test cases
 ├── Dockerfile
 ├── docker-compose.yml
 ├── requirements.txt
 └── README.md
+
 
 Setup
 1. Install dependencies locally (optional)
@@ -56,21 +74,13 @@ def test_network_device_connectivity():
         assert info["latency"] is None or info["latency"] < 1.0, f"{target} latency too high"
 
 Reports & Logs
-
 HTML reports are generated in reports/:
-
 pipeline_report.html for AI pipeline tests
-
 network_report.html for network tests
-
 Network test logs are saved in logs/.
 
 Key Benefits
-
 Demonstrates Python-based test automation for AI pipelines and network devices.
-
 Uses PyTest framework consistently for both layers of automation.
-
 Docker ensures reproducibility across machines and CI/CD pipelines.
-
 Easily extensible for real network devices via SSH, SNMP, or REST APIs.

@@ -1,3 +1,7 @@
+def simulate_model_training():
+    """Simulate training"""
+    return {"model": "dummy_model"}
+    
 def calculate_accuracy(predictions, labels):
     correct = sum(p == l for p, l in zip(predictions, labels))
     return correct / len(labels) if labels else 0.0

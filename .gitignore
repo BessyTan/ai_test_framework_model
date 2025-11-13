@@ -1,29 +1,75 @@
-# --- Python cache and compiled files ---
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-*.pyo
-*.pyd
+*$py.class
+
+# C extensions
 *.so
 
-# --- Virtual environments ---
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environment
 venv/
 env/
-.venv/
 ENV/
+.env/
 
-# --- IDE and editor settings ---
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Logs
+*.log
+
+# IDEs
 .vscode/
 .idea/
-*.swp
-*.swo
+*.sublime-project
+*.sublime-workspace
+
+# Data and config
+data/
+config/
+*.db
+*.sqlite3
+
+# Docker
+docker-compose.override.yml
+*.dockerignore
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Others
 *.bak
-
-# --- OS and user files ---
-.DS_Store
-Thumbs.db
-
-# --- Logs and reports ---
-logs/
-reports/
-*.log
-*.htm*
+*.swp
+*.tmp

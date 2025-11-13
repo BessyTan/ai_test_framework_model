@@ -1,36 +1,29 @@
 import random
 import time
 
+from app.utils.data_loader import load_data
+from app.utils.metrics import evaluate_accuracy
+from app.model_utils import simulate_model_training, simulate_model_inference
 # app/pipeline.py
 
-def run_pipeline_step(step: str):
-    """Simulate a pipeline step and return a numeric result."""
-    print(f"Running step: {step}")
-    if step == "load_data":
-        return 0.55        # Simulated data load quality
-    elif step == "preprocess":
-        return 0.60        # Simulated preprocessing success
-    elif step == "train":
-        return 0.75        # Simulated training accuracy
-    elif step == "evaluate":
-        return 0.71        # Simulated evaluation score
+def run_pipeline_step(step_name):
+    if step_name == "load_data":
+        return load_data("data/sample.csv")
+    elif step_name == "preprocess":
+        df = load_data()
+        # Example preprocessing: normalize x
+        df["x_norm"] = df["x"] / df["x"].max()
+        return df
+    elif step_name == "train":
+        return simulate_model_training()
+    elif step_name == "evaluate":
+        df = load_data()
+        predictions = simulate_model_inference(df["x"])
+        labels = df["y"]
+        return evaluate_accuracy(predictions, labels)
     else:
-        raise ValueError(f"Unknown pipeline step: {step}")
+        raise ValueError(f"Unknown step {step_name}")
 
 
-def validate_results(results: dict) -> bool:
-    """Validate that each pipeline step meets a minimum threshold."""
-    thresholds = {
-        "load_data": 0.5,
-        "preprocess": 0.5,
-        "train": 0.7,
-        "evaluate": 0.7
-    }
-    for step, value in results.items():
-        if step not in thresholds:
-            print(f"Warning: No threshold defined for step {step}")
-            continue
-        if value < thresholds[step]:
-            print(f"Validation failed for {step}: {value} < {thresholds[step]}")
-            return False
-    return True
+def validate_results(results):
+    return all(result is not None for result in results.values())
